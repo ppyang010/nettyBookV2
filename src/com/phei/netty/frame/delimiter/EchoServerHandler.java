@@ -37,6 +37,9 @@ public class EchoServerHandler extends ChannelHandlerAdapter {
         String body = (String) msg;
         System.out.println("This is " + ++counter + " times receive client : ["
                 + body + "]");
+        //由于我们设置DelimiterBasedFrameDecoder过滤掉了分隔符，所以，返回给客户端
+        //时需要在请求消息尾部拼接分隔符“$_”，最后创建ByteBuf，将原始消息重新返回给
+        //客户端。
         body += "$_";
         ByteBuf echo = Unpooled.copiedBuffer(body.getBytes());
         ctx.writeAndFlush(echo);
