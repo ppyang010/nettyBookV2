@@ -1,0 +1,8 @@
+target/
+out/
+.idea/
+.svn/
+*.pyc
+*.iml
+*.log
+/src/main/resources/application-local.yml
